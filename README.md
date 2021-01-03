@@ -1,14 +1,11 @@
-# training-x
+# Training X
 
-## Sprint 1
-
-- Hardcoded program with days & exercises
+![Screenshot of Training X](./static/screenshot.png)
 
 ## Backlog
 
-- Edit weight, reps, and notes
-- Save to local storage/PWA technique
-- Ability to export to copyable text
+-   Edit notes
+-   Ability to export to copyable text
 
 ## Nuxt Commands
 

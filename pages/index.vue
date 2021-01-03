@@ -43,6 +43,11 @@ export default {
 			exerciseInModal: null,
 		};
 	},
+	created() {
+		const savedProgram = localStorage.getItem('program');
+		if (!savedProgram) return;
+		this.program = JSON.parse(savedProgram);
+	},
 	methods: {
 		openModal(exercise) {
 			this.exerciseInModal = exercise;
@@ -51,7 +56,7 @@ export default {
 		saveAndExitModal() {
 			this.exerciseInModal = null;
 
-			// Save to local storage
+			localStorage.setItem('program', JSON.stringify(this.program));
 		},
 	},
 };
