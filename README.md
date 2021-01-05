@@ -8,6 +8,7 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
+-   Make copy icon a button for better mobile UX
 -   Replace inputs with selectable reps/weight and one main increment/decrement
 -   Change icon
 -   Edit notes
