@@ -8,8 +8,14 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
+-   Replace inputs with selectable reps/weight and one main increment/decrement
+-   Change icon
 -   Edit notes
--   Ability to export to copyable text
+-   Add/delete exercises
+-   Add/delete workouts
+-   Redesign UI
+-   List of built-in exercises with how-tos when creating exercise
+-   Info section on each exercise with how-to reminders
 
 ## Nuxt Commands
 

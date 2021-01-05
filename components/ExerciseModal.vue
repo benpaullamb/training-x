@@ -1,30 +1,26 @@
 <template>
-	<div class="exr-modal" @click.self="saveAndExit">
-		<div class="exr-modal__box">
-			<span class="exr-modal__title">{{ exercise.name }} Sets</span>
+	<div class="modal" @click.self="saveAndExit">
+		<div class="modal__box">
+			<span class="modal__title">{{ exercise.name }} Sets</span>
 
-			<div
-				v-for="(set, i) in exercise.sets"
-				:key="i"
-				class="exr-modal__set"
-			>
-				<span class="exr-modal__index">{{ i + 1 }}</span>
+			<div v-for="(set, i) in exercise.sets" :key="i" class="modal__set">
+				<span class="modal__index">{{ i + 1 }}</span>
 
-				<div class="exr-modal__group">
+				<div class="modal__group">
 					<input
 						v-model="set.reps"
 						type="number"
-						class="exr-modal__input"
+						class="modal__input"
 						placeholder="Enter reps..."
 					/>
-					<span class="exr-modal__label">reps</span>
+					<span class="modal__label">reps</span>
 					<input
 						v-model="set.weight"
 						type="number"
-						class="exr-modal__input"
+						class="modal__input"
 						placeholder="Enter weight..."
 					/>
-					<span class="exr-modal__label">kg</span>
+					<span class="modal__label">kg</span>
 				</div>
 			</div>
 		</div>
@@ -48,7 +44,7 @@ export default {
 </script>
 
 <style>
-.exr-modal {
+.modal {
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -61,7 +57,7 @@ export default {
 	background: rgba(55, 55, 55, 0.5);
 }
 
-.exr-modal__box {
+.modal__box {
 	width: 80%;
 	padding: 24px;
 	z-index: 2;
@@ -69,41 +65,41 @@ export default {
 	border-radius: 4px;
 }
 
-.exr-modal__title {
+.modal__title {
 	margin-bottom: 8px;
 	display: block;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.exr-modal__set {
+.modal__set {
 	margin-bottom: 16px;
 }
 
-.exr-modal__set:last-child {
+.modal__set:last-child {
 	margin-bottom: 0;
 }
 
-.exr-modal__index {
+.modal__index {
 	display: block;
 	margin-bottom: 8px;
 }
 
-.exr-modal__group {
+.modal__group {
 	display: grid;
 	grid-template-columns: 1fr auto 1fr auto;
 	align-items: center;
 }
 
-.exr-modal__label {
+.modal__label {
 	margin: 0 8px;
 }
 
-.exr-modal__label:last-child {
+.modal__label:last-child {
 	margin-right: 0;
 }
 
-.exr-modal__input {
+.modal__input {
 	width: 100%;
 	padding: 4px;
 	border: none;

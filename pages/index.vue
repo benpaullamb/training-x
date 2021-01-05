@@ -5,9 +5,16 @@
 			:exercise="exerciseInModal"
 			@save-and-exit="saveAndExitModal"
 		/>
+		<Toast v-if="toastMsg" :msg="toastMsg" @time-up="hideToast" />
 
 		<div class="header">
-			<h1 class="header__title">Training X</h1>
+			<h1 class="header__title">
+				Training X
+				<span class="header__subtitle">v1.0.0</span>
+			</h1>
+			<span class="material-icons" @click="copyProgramToClipboard"
+				>copy_all</span
+			>
 		</div>
 
 		<div class="program">
@@ -35,12 +42,14 @@
 
 <script>
 import program from '../assets/program';
+import { programToText } from '../assets/utils';
 
 export default {
 	data() {
 		return {
 			program,
 			exerciseInModal: null,
+			toastMsg: '',
 		};
 	},
 	created() {
@@ -58,6 +67,23 @@ export default {
 
 			localStorage.setItem('program', JSON.stringify(this.program));
 		},
+
+		async copyProgramToClipboard() {
+			try {
+				await navigator.clipboard.writeText(
+					programToText(this.program)
+				);
+				this.displayToast('Copied program to clipboard');
+			} catch (err) {}
+		},
+
+		displayToast(msg) {
+			this.toastMsg = msg;
+		},
+
+		hideToast() {
+			this.toastMsg = '';
+		},
 	},
 };
 </script>
@@ -65,10 +91,17 @@ export default {
 <style>
 .header {
 	padding: 16px;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
 }
 
 .header__title {
 	font-size: 30px;
+}
+
+.header__subtitle {
+	font-size: 20px;
 }
 
 .program {
