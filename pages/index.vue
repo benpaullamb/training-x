@@ -1,20 +1,34 @@
 <template>
 	<div class="app">
 		<ExerciseModal
-			v-if="exerciseInModal"
-			:exercise="exerciseInModal"
-			@save-and-exit="saveAndExitModal"
+			v-if="modals.exercise"
+			:exercise="modals.exercise"
+			@close="saveAndExitExerciseModal"
 		/>
-		<Toast v-if="toastMsg" :msg="toastMsg" @time-up="hideToast" />
+		<ImportModal
+			v-if="modals.import"
+			@cancel="closeModal('import')"
+			@success="importProgram"
+		/>
+		<Toast
+			v-if="modals.toast"
+			:msg="modals.toast"
+			@time-up="closeModal('toast', '')"
+		/>
 
 		<div class="header">
 			<h1 class="header__title">
 				Training X
-				<span class="header__subtitle">v1.1.0</span>
+				<span class="header__subtitle">v1.2.0</span>
 			</h1>
-			<span class="material-icons" @click="copyProgramToClipboard"
-				>copy_all</span
-			>
+			<div class="header__buttons">
+				<button class="header__button" @click="copyProgramToClipboard">
+					<span class="material-icons">copy_all</span>
+				</button>
+				<button class="header__button" @click="openModal('import')">
+					<span class="material-icons">content_paste</span>
+				</button>
+			</div>
 		</div>
 
 		<div class="program">
@@ -33,7 +47,7 @@
 					v-for="(exercise, j) in workout.exercises"
 					:key="j"
 					:exercise="exercise"
-					@open-modal="openModal"
+					@selected="openModal('exercise', exercise)"
 				/>
 			</div>
 		</div>
@@ -48,24 +62,36 @@ export default {
 	data() {
 		return {
 			program,
-			exerciseInModal: null,
-			toastMsg: '',
+			modals: {
+				exercise: null,
+				import: false,
+				toast: '',
+			},
 		};
 	},
 	created() {
 		const savedProgram = localStorage.getItem('program');
-		if (!savedProgram) return;
+		if (!savedProgram) {
+			return;
+		}
 		this.program = JSON.parse(savedProgram);
 	},
 	methods: {
-		openModal(exercise) {
-			this.exerciseInModal = exercise;
+		openModal(name, valueToPass = true) {
+			this.modals[name] = valueToPass;
 		},
 
-		saveAndExitModal() {
-			this.exerciseInModal = null;
+		closeModal(name) {
+			this.modals[name] = null;
+		},
 
-			localStorage.setItem('program', JSON.stringify(this.program));
+		saveAndExitExerciseModal() {
+			this.closeModal('exercise');
+			this.save();
+		},
+
+		displayToast(msg) {
+			this.modals.toast = msg;
 		},
 
 		async copyProgramToClipboard() {
@@ -77,18 +103,27 @@ export default {
 			} catch (err) {}
 		},
 
-		displayToast(msg) {
-			this.toastMsg = msg;
+		importProgram(program) {
+			if (program) {
+				this.program = program;
+				this.save();
+				this.displayToast('Program imported from clipboard');
+			}
+			this.closeModal('import');
 		},
 
-		hideToast() {
-			this.toastMsg = '';
+		save() {
+			localStorage.setItem('program', JSON.stringify(this.program));
 		},
 	},
 };
 </script>
 
 <style>
+.app {
+	overflow-x: hidden;
+}
+
 .header {
 	padding: 16px;
 	display: grid;
@@ -102,6 +137,13 @@ export default {
 
 .header__subtitle {
 	font-size: 20px;
+}
+
+.header__button {
+	padding: 0;
+	margin-left: 16px;
+	background: none;
+	border: none;
 }
 
 .program {

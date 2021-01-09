@@ -8,15 +8,14 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
--   Make copy icon a button for better mobile UX
 -   Replace inputs with selectable reps/weight and one main increment/decrement
--   Change icon
--   Edit notes
--   Add/delete exercises
--   Add/delete workouts
--   Redesign UI
 -   List of built-in exercises with how-tos when creating exercise
 -   Info section on each exercise with how-to reminders
+-   Change app icon
+-   Redesign UI
+-   Add/delete exercises
+-   Add/delete workouts
+-   Edit notes
 
 ## Nuxt Commands
 

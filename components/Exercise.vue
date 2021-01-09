@@ -1,5 +1,5 @@
 <template>
-	<div class="exercise" @click="openModal">
+	<div class="exercise" @click="selected">
 		<span class="exercise__name">{{ exercise.name }}</span>
 
 		<div class="exercise__sets">
@@ -40,11 +40,6 @@ export default {
 			default: () => {},
 		},
 	},
-	data() {
-		return {
-			showModal: false,
-		};
-	},
 	computed: {
 		reps() {
 			return this.exercise.sets.map(set => set.reps);
@@ -59,8 +54,8 @@ export default {
 		},
 	},
 	methods: {
-		openModal() {
-			this.$emit('open-modal', this.exercise);
+		selected() {
+			this.$emit('selected', this.exercise);
 		},
 	},
 };
