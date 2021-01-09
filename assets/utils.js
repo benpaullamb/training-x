@@ -108,6 +108,11 @@ export function getSetsFromShorthand(shorthand) {
 		.split('x')
 		.map(num => Number(num));
 
+	// For exercises that use shorthand with no weight
+	if (values.length === 2) {
+		values.push(0);
+	}
+
 	for (let i = 0; i < values[0]; ++i) {
 		sets.push({
 			reps: values[1],

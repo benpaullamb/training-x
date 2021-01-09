@@ -19,7 +19,7 @@
 		<div class="header">
 			<h1 class="header__title">
 				Training X
-				<span class="header__subtitle">v1.2.0</span>
+				<span class="header__subtitle">v1.2.1</span>
 			</h1>
 			<div class="header__buttons">
 				<button class="header__button" @click="copyProgramToClipboard">
