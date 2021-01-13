@@ -16,20 +16,16 @@
 			@time-up="closeModal('toast', '')"
 		/>
 
-		<div class="header">
-			<h1 class="header__title">
-				Training X
-				<span class="header__subtitle">v1.2.1</span>
-			</h1>
-			<div class="header__buttons">
+		<Header>
+			<template v-slot:buttons>
 				<button class="header__button" @click="copyProgramToClipboard">
 					<span class="material-icons">copy_all</span>
 				</button>
 				<button class="header__button" @click="openModal('import')">
 					<span class="material-icons">content_paste</span>
 				</button>
-			</div>
-		</div>
+			</template>
+		</Header>
 
 		<div class="program">
 			<h2 class="program__name">{{ program.name }}</h2>
@@ -122,21 +118,6 @@ export default {
 <style>
 .app {
 	overflow-x: hidden;
-}
-
-.header {
-	padding: 16px;
-	display: grid;
-	grid-template-columns: 1fr auto;
-	align-items: center;
-}
-
-.header__title {
-	font-size: 30px;
-}
-
-.header__subtitle {
-	font-size: 20px;
 }
 
 .header__button {

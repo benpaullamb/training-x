@@ -8,10 +8,8 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
--   Shorthand without weights not importing correctly
+-   Standardise font sizes
 -   Replace inputs with selectable reps/weight and one main increment/decrement
--   List of built-in exercises with how-tos when creating exercise
--   Info section on each exercise with how-to reminders
 -   Change app icon
 -   Redesign UI
 -   Add/delete exercises
