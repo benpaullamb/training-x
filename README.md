@@ -8,6 +8,7 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
+-   Add close button and overflow control to instructions modal
 -   Standardise font sizes
 -   Replace inputs with selectable reps/weight and one main increment/decrement
 -   Change app icon
