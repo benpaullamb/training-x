@@ -150,4 +150,22 @@ export default [
 		purpose:
 			'To work the lower back. Deadlifts are an overall power exercise that involves more muscles than any other exercise in your routine, including the lower back, upper back, and trapezius muscles, the buttocks, and the legs. A strong lower back is especially important when doing movements like Bent-Over Rows and T-Bar Rows, which put a lot of strain on this area.',
 	},
+	{
+		exercise: 'REVERSE CRUNCHES',
+		muscle: 'Abdominal',
+		execution: [
+			'This exercise is best done lying on a Bench Press bench that has a rack at one end. Lie on your back on the bench and reach up behind you to hold the rack for support. Bend your knees and bring them up as far toward your face as you can without lifting your pelvis off the bench.',
+			'From this starting position, bring your knees up as close to your face as you can, rounding your back, with the glutes coming up off the bench and crunching up toward the rib cage. Hold for a moment at the top and deliberately squeeze the ab muscles for full contraction. Slowly lower your knees until your rear end comes to rest on the bench again. (Don’t lower your legs any farther than this. You aren’t doing Leg Raises.) Again, do this movement deliberately and under control rather than doing a lot of quick reps.',
+		],
+		purpose: 'Emphasizes lower abs',
+	},
+	{
+		exercise: 'CRUNCHES',
+		muscle: 'Abdominal',
+		execution: [
+			'Lie on your back on the floor, your legs across a bench in front of you. You can put your hands behind your neck or keep them in front of you, whichever you prefer.',
+			'Curl your shoulders and trunk upward toward your knees, rounding your back. Don’t try to lift your entire back up off the floor, just roll forward and crunch your rib cage toward your pelvis. At the top of the movement, deliberately give an extra squeeze of the abs to achieve total contraction, then release and lower your shoulders back to the starting position. This is not a movement you do quickly. Do each rep deliberately and under control. You can vary the angle of stress on your abdominals by raising your foot position. Instead of putting your legs across a bench, try lying on the floor and placing the soles of your feet against a wall at whatever height feels most comfortable.',
+		],
+		purpose: 'Emphasizes upper abs',
+	},
 ];

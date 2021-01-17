@@ -1,7 +1,12 @@
 <template>
 	<div class="modal" @click.self="$emit('close')">
 		<div class="modal__box">
-			<span class="modal__title">{{ title }}</span>
+			<div class="modal__header">
+				<span class="modal__title">{{ title }}</span>
+				<button class="modal__close" @click="$emit('close')">
+					<span class="material-icons">close</span>
+				</button>
+			</div>
 
 			<slot></slot>
 		</div>
@@ -35,15 +40,27 @@ export default {
 
 .modal__box {
 	width: 90%;
+	max-height: 90%;
 	padding: 24px;
 	z-index: 2;
+	overflow-y: scroll;
 	background: #373737;
 	border-radius: 4px;
 }
 
-.modal__title {
+.modal__header {
 	margin-bottom: 16px;
-	display: block;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal__close {
+	background: none;
+	border: none;
+}
+
+.modal__title {
 	font-size: 20px;
 	font-weight: bold;
 }

@@ -24,24 +24,29 @@
 		</Modal>
 
 		<div class="body-parts">
+			<h2 class="body-parts__title">Instructions</h2>
+
 			<div
-				v-for="exercise in exerciseDb"
-				:key="exercise.name"
-				class="body-parts__exercise"
-				@click="openModal('instructions', exercise)"
+				v-for="muscleGroup in exercisesByMuscle"
+				:key="muscleGroup.muscle"
+				class="body-parts__group"
 			>
-				<div class="body-parts__header">
+				<h3 class="body-parts__muscle">{{ muscleGroup.muscle }}</h3>
+
+				<div
+					v-for="exercise in muscleGroup.exercises"
+					:key="exercise.name"
+					class="body-parts__exercise"
+					@click="openModal('instructions', exercise)"
+				>
 					<span class="body-parts__name"
 						>{{ capitalise(exercise.exercise) }}
 					</span>
-					<span class="body-parts__muscle">{{
-						exercise.muscle
-					}}</span>
-				</div>
 
-				<p class="body-parts__purpose">
-					{{ firstSentence(exercise.purpose) }}
-				</p>
+					<p class="body-parts__purpose">
+						{{ firstSentence(exercise.purpose) }}
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -58,6 +63,38 @@ export default {
 				instructions: null,
 			},
 		};
+	},
+	computed: {
+		exercisesByMuscle() {
+			const muscles = [];
+			this.exerciseDb.forEach(exercise => {
+				const muscleGroup = muscles.find(
+					({ muscle }) => muscle === exercise.muscle
+				);
+
+				const exerciseCopy = { ...exercise };
+				delete exerciseCopy.muscle;
+
+				if (!muscleGroup) {
+					muscles.push({
+						muscle: exercise.muscle,
+						exercises: [exerciseCopy],
+					});
+				} else {
+					muscleGroup.exercises.push(exerciseCopy);
+				}
+			});
+
+			muscles.sort((a, b) => this.alphabeticalSort(a, b, 'muscle'));
+
+			muscles.forEach(({ exercises }) => {
+				exercises.sort((a, b) =>
+					this.alphabeticalSort(a, b, 'exercise')
+				);
+			});
+
+			return muscles;
+		},
 	},
 	methods: {
 		openModal(name, valueToPass = true) {
@@ -79,6 +116,16 @@ export default {
 		firstSentence(paragraph) {
 			return paragraph.split('. ')[0] + '.';
 		},
+
+		alphabeticalSort(a, b, prop) {
+			if (a[prop] < b[prop]) {
+				return -1;
+			} else if (a[prop] > b[prop]) {
+				return 1;
+			} else {
+				return 0;
+			}
+		},
 	},
 };
 </script>
@@ -86,34 +133,36 @@ export default {
 <style>
 .body-parts {
 	padding: 16px;
+	padding-top: 0;
+}
+
+.body-parts__title {
+	margin-bottom: 16px;
+}
+
+.body-parts__group {
+	margin-bottom: 32px;
+}
+
+.body-parts__muscle {
+	margin-bottom: 24px;
+	font-size: 20px;
 }
 
 .body-parts__exercise {
-	padding-bottom: 16px;
-	margin-bottom: 16px;
+	padding-bottom: 12px;
+	margin-bottom: 12px;
 	border-bottom: 1px solid #373737;
 }
 
 .body-parts__exercise:last-child {
-	padding-bottom: 0;
-	margin-bottom: 0;
 	border-bottom: none;
 }
 
-.body-parts__header {
-	margin-bottom: 8px;
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-}
-
 .body-parts__name {
+	margin-bottom: 8px;
+	display: block;
 	font-size: 20px;
-}
-
-.body-parts__muscle {
-	font-size: 14px;
-	font-style: italic;
 }
 
 .instructions {

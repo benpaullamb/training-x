@@ -8,15 +8,8 @@ _Made with Nuxt.js and Vue.js._
 
 ## Backlog
 
--   Instructions page
-    -   Add reverse crunches
-    -   Add title
-    -   Group exercise by muscle
-    -   Order muscles and exercises alphabetically
--   Add close button and overflow control to instructions modal
 -   Standardise font sizes
 -   Replace inputs with selectable reps/weight and one main increment/decrement
--   Change app icon
 -   Redesign UI
 -   Add/delete exercises
 -   Add/delete workouts
