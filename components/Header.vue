@@ -3,7 +3,7 @@
 		<div class="header__main">
 			<h1 class="header__title">
 				Training X
-				<span class="header__subtitle">v1.3.0</span>
+				<span class="header__subtitle">v1.4.0</span>
 			</h1>
 			<div class="header__buttons">
 				<slot name="buttons"></slot>
