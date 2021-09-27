@@ -1,6 +1,6 @@
 # Training X
 
-![status: dropped](https://img.shields.io/badge/status-dropped-inactive)
+![status: completed](https://img.shields.io/badge/status-completed-success)
 
 ## About this Project
 
